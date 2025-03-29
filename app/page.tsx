@@ -9,6 +9,7 @@ import {
     CarouselItem,
     CarouselNext,
     CarouselPrevious,
+    type CarouselApi,
 } from "@/components/ui/carousel";
 import { useState, useEffect } from "react";
 import { useCart } from "@/contexts/CartContext";
@@ -200,6 +201,17 @@ const defaultMenuItems: MenuItem[] = [
 // Remove the standalone carousel components and keep them only in the Home component's return statement
 
 export default function Home() {
+    const [api, setApi] = useState<CarouselApi>();
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    useEffect(() => {
+        if (!api) return;
+
+        api.on("select", () => {
+            setCurrentSlide(api.selectedScrollSnap());
+        });
+    }, [api]);
+
     const { addToCart } = useCart();
     const [selectedCategory, setSelectedCategory] = useState<
         string | undefined
@@ -238,7 +250,16 @@ export default function Home() {
                 <div className="relative">
                     <Carousel
                         className="w-full max-w-5xl mx-auto"
-                        opts={{ loop: true }}>
+                        plugins={[
+                            Autoplay({
+                                delay: 2000,
+                            }),
+                        ]}
+                        setApi={setApi}
+                        opts={{
+                            loop: true,
+                            align: "start",
+                        }}>
                         <CarouselContent>
                             {featuredItems.map((item) => (
                                 <CarouselItem
@@ -299,7 +320,7 @@ export default function Home() {
                             <div
                                 key={index}
                                 className={`h-2 w-2 rounded-full transition-all duration-300 ${
-                                    index === 0
+                                    index === currentSlide
                                         ? "bg-orange-500 w-4"
                                         : "bg-orange-200 dark:bg-orange-900"
                                 }`}
