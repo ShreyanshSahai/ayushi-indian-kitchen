@@ -1,9 +1,10 @@
 import { FoodProduct } from "@/lib/db/models/food-product";
-import { Image } from "@/lib/db/models/image";
+import { Image as ImageModel } from "@/lib/db/models/image";
+import Image from "next/image";
 
 interface FoodCardProps {
     product: FoodProduct;
-    image: Image;
+    image: ImageModel;
 }
 
 export function FoodCard({ product, image }: FoodCardProps) {
@@ -19,9 +20,11 @@ export function FoodCard({ product, image }: FoodCardProps) {
     return (
         <div className="group relative rounded-lg border p-4 hover:border-orange-500">
             <div className="aspect-square overflow-hidden rounded-lg">
-                <img
+                <Image
                     src={image.path}
                     alt={product.name}
+                    width={400}
+                    height={400}
                     className="h-full w-full object-cover transition-transform group-hover:scale-105"
                 />
             </div>

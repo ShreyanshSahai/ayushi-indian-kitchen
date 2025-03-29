@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Autoplay from "embla-carousel-autoplay";
 import {
@@ -9,15 +9,14 @@ import {
     CarouselItem,
     CarouselNext,
     CarouselPrevious,
-    type CarouselApi,
 } from "@/components/ui/carousel";
 import { useState, useEffect } from "react";
-import { ShoppingBag } from "lucide-react"; // Add this import at the top
 import { useCart } from "@/contexts/CartContext";
 import { AnimatedCartButton } from "@/components/animated-cart-button";
 import { inconsolata, atma } from "@/lib/fonts";
 import { getMenuItems } from "@/lib/db/menu";
 import type { MenuItem } from "@/lib/db/menu";
+import Image from "next/image";
 
 // Update the initial featuredItems array
 const featuredItems = [
@@ -178,9 +177,11 @@ const defaultMenuItems: MenuItem[] = [
                 className="md:basis-1/2 lg:basis-1/3 pl-4">
                 <Card className="h-full">
                     <CardContent className="p-4">
-                        <img
+                        <Image
                             src={item.image}
                             alt={item.name}
+                            width={400}
+                            height={300}
                             className="w-full h-64 object-cover rounded-md"
                         />
                         <h3 className="text-xl font-semibold mt-2">
@@ -203,8 +204,6 @@ export default function Home() {
     const [selectedCategory, setSelectedCategory] = useState<
         string | undefined
     >("All");
-    const [api, setApi] = useState<CarouselApi>();
-    const [currentSlide, setCurrentSlide] = useState(0);
     const [menuItems, setMenuItems] = useState<MenuItem[]>(defaultMenuItems);
 
     useEffect(() => {
@@ -239,8 +238,7 @@ export default function Home() {
                 <div className="relative">
                     <Carousel
                         className="w-full max-w-5xl mx-auto"
-                        opts={{ loop: true }}
-                        setApi={setApi}>
+                        opts={{ loop: true }}>
                         <CarouselContent>
                             {featuredItems.map((item) => (
                                 <CarouselItem
@@ -256,9 +254,11 @@ export default function Home() {
                                         <CardContent
                                             className={`p-4 ${inconsolata.className}`}>
                                             <div className="overflow-hidden rounded-md">
-                                                <img
+                                                <Image
                                                     src={item.image}
                                                     alt={item.name}
+                                                    width={400}
+                                                    height={300}
                                                     className="w-full h-48 object-cover rounded-md transform transition-transform duration-300 group-hover:scale-110"
                                                 />
                                             </div>
@@ -299,7 +299,7 @@ export default function Home() {
                             <div
                                 key={index}
                                 className={`h-2 w-2 rounded-full transition-all duration-300 ${
-                                    index === currentSlide
+                                    index === 0
                                         ? "bg-orange-500 w-4"
                                         : "bg-orange-200 dark:bg-orange-900"
                                 }`}
@@ -361,9 +361,11 @@ export default function Home() {
                             <CardContent
                                 className={`p-4 ${inconsolata.className}`}>
                                 <div className="overflow-hidden rounded-md">
-                                    <img
+                                    <Image
                                         src={item.image}
                                         alt={item.name}
+                                        width={400}
+                                        height={300}
                                         className="w-full h-48 object-cover rounded-md transform transition-transform duration-300 group-hover:scale-110"
                                     />
                                 </div>

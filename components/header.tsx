@@ -39,7 +39,7 @@ export function Header() {
             <div className="container mx-auto px-4 py-4 flex justify-between items-center">
                 <h1
                     className={`text-4xl font-black tracking-wide px-1 bg-gradient-to-r from-orange-500 to-orange-600 dark:from-orange-500 dark:via-white dark:to-green-600 bg-clip-text text-transparent hover:scale-105 transition-transform drop-shadow-sm ${parisienne.className}`}>
-                    Ayushi's Indian Kitchen
+                    Ayushi&apos;s Indian Kitchen
                 </h1>
                 <div className="flex items-center gap-4">
                     <div className="hidden md:flex items-center gap-4">

@@ -86,7 +86,8 @@ export function AuthDialog({
             } else {
                 toast.error(result.error || "Failed to login with Google");
             }
-        } catch (error: any) {
+        } catch (err: unknown) {
+            console.error("Google sign-in error:", err);
             toast.error("Failed to login with Google");
         }
     };
@@ -137,7 +138,8 @@ export function AuthDialog({
                 } else {
                     toast.error(result.error || "Registration failed");
                 }
-            } catch (error: any) {
+            } catch (err: unknown) {
+                console.error("Registration error:", err);
                 toast.error("Registration failed");
             }
         } else {
@@ -323,25 +325,24 @@ export function AuthDialog({
                         Sign in with Google
                     </Button>
                     <div className="w-full text-center">
-                        {isLogin ? (
-                            <p>
-                                Don't have an account?{" "}
-                                <span
-                                    className="text-orange-500 hover:text-orange-600 cursor-pointer"
-                                    onClick={() => setIsLogin(false)}>
-                                    Register
-                                </span>
-                            </p>
+                        <p>
+                            Don&apos;t have an account?{" "}
+                            <span
+                                className="text-orange-500 hover:text-orange-600 cursor-pointer"
+                                onClick={() => setIsLogin(false)}>
+                                Register
+                            </span>
+                        </p>
                         ) : (
-                            <p>
-                                Already have an account?{" "}
-                                <span
-                                    className="text-orange-500 hover:text-orange-600 cursor-pointer"
-                                    onClick={() => setIsLogin(true)}>
-                                    Login
-                                </span>
-                            </p>
-                        )}
+                        <p>
+                            Already have an account?{" "}
+                            <span
+                                className="text-orange-500 hover:text-orange-600 cursor-pointer"
+                                onClick={() => setIsLogin(true)}>
+                                Login
+                            </span>
+                        </p>
+                        )
                     </div>
                 </form>
             </DialogContent>

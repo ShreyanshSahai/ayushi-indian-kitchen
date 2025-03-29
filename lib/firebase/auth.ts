@@ -46,10 +46,11 @@ export const firebaseAuth = {
                 success: true,
                 data: userCredential,
             };
-        } catch (error: any) {
+        } catch (error: unknown) {
+            const firebaseError = error as { message: string };
             return {
                 success: false,
-                error: error.message,
+                error: firebaseError.message,
             };
         }
     },
@@ -65,10 +66,11 @@ export const firebaseAuth = {
                 success: true,
                 data: userCredential,
             };
-        } catch (error: any) {
+        } catch (error: unknown) {
+            const firebaseError = error as { message: string };
             return {
                 success: false,
-                error: error.message,
+                error: firebaseError.message,
             };
         }
     },
@@ -96,10 +98,11 @@ export const firebaseAuth = {
                 success: true,
                 data: userCredential,
             };
-        } catch (error: any) {
+        } catch (error: unknown) {
+            const firebaseError = error as { message: string };
             return {
                 success: false,
-                error: error.message,
+                error: firebaseError.message,
             };
         }
     },
@@ -110,10 +113,11 @@ export const firebaseAuth = {
             return {
                 success: true,
             };
-        } catch (error: any) {
+        } catch (error: unknown) {
+            const firebaseError = error as { message: string };
             return {
                 success: false,
-                error: error.message,
+                error: firebaseError.message,
             };
         }
     },

@@ -1,5 +1,5 @@
 import { db } from "./config";
-import { UserData, UserRole } from "../types/user";
+import { UserRole } from "../types/user";
 import { doc, getDoc } from "firebase/firestore";
 
 export async function getUserRole(userId: string): Promise<UserRole> {

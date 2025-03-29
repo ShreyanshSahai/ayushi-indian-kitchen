@@ -10,7 +10,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
 import { Minus, Plus, Trash2 } from "lucide-react";
-import { CartCountButton } from "./cart-count-button";
 
 interface CartDialogProps {
     open: boolean;
