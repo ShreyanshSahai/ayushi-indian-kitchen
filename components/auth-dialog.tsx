@@ -325,24 +325,27 @@ export function AuthDialog({
                         Sign in with Google
                     </Button>
                     <div className="w-full text-center">
-                        <p>
-                            Don&apos;t have an account?{" "}
-                            <span
-                                className="text-orange-500 hover:text-orange-600 cursor-pointer"
-                                onClick={() => setIsLogin(false)}>
-                                Register
-                            </span>
-                        </p>
+                        {isLogin ? (
+                            <p className="text-muted-foreground">
+                                Don&apos;t have an account?{" "}
+                                <button
+                                    type="button"
+                                    className="text-orange-500 hover:text-orange-600 font-medium hover:underline"
+                                    onClick={() => setIsLogin(false)}>
+                                    Register
+                                </button>
+                            </p>
                         ) : (
-                        <p>
-                            Already have an account?{" "}
-                            <span
-                                className="text-orange-500 hover:text-orange-600 cursor-pointer"
-                                onClick={() => setIsLogin(true)}>
-                                Login
-                            </span>
-                        </p>
-                        )
+                            <p className="text-muted-foreground">
+                                Already have an account?{" "}
+                                <button
+                                    type="button"
+                                    className="text-orange-500 hover:text-orange-600 font-medium hover:underline"
+                                    onClick={() => setIsLogin(true)}>
+                                    Login
+                                </button>
+                            </p>
+                        )}
                     </div>
                 </form>
             </DialogContent>
